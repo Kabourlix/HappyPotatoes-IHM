@@ -26,6 +26,7 @@ public class FoxMovement : MonoBehaviour
         {
             
             foxAnimator.SetFloat("FoxSpeed",2.0f);
+            //! This possibly prevents gravity from working correctly.
             fox.transform.position = Vector3.MoveTowards(fox.transform.position, player.transform.position, foxAnimator.GetParameter(1).defaultFloat);
         }
         else
