@@ -1,18 +1,36 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FoxMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject fox;
+
+    private Animator foxAnimator;
+    private float moveSpeed;
+    private const float IdleRange = 5.0f;
+
+    private void Start()
     {
-        
+        foxAnimator = fox.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        fox.transform.LookAt(player.transform);
+        float targetDistance = (player.transform.position - fox.transform.position).magnitude;
+
+        if (targetDistance > IdleRange)
+        {
+            
+            foxAnimator.SetFloat("FoxSpeed",2.0f);
+            fox.transform.position = Vector3.MoveTowards(fox.transform.position, player.transform.position, foxAnimator.GetParameter(1).defaultFloat);
+        }
+        else
+        {
+            foxAnimator.SetFloat("FoxSpeed",0f);
+        }
     }
 }
