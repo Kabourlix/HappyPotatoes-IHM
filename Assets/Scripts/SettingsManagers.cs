@@ -1,9 +1,12 @@
 using System;
+using events;
 using UnityEngine;
 
 public class SettingsManagers : MonoBehaviour
 {
-    
+
+    private GameEvent[] events;
+    public GameEvent[] Events { get; set; }
     
     private bool isFoxFollowing;
 
