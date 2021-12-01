@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SettingsManagers : MonoBehaviour
 {
+    
+    
     private bool isFoxFollowing;
 
     public bool IsFoxFollowing
@@ -23,14 +25,6 @@ public class SettingsManagers : MonoBehaviour
             Destroy(gameObject);    // Suppression d'une instance précédente (sécurité...sécurité...)
  
         instance = this;
-    }
-  
-    
-    // here we find all the actions and eventListeners
-    public event Action<bool> OnFoxMovementChanged;
-    public void FoxMovementChanged(bool status)
-    {
-        OnFoxMovementChanged?.Invoke(status);
     }
 
 

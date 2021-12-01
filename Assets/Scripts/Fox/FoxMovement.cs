@@ -18,8 +18,6 @@ public class FoxMovement : MonoBehaviour
     {
         manager = SettingsManagers.Instance;
         foxAnimator = fox.GetComponent<Animator>();
-
-        manager.OnFoxMovementChanged += b => { };
     }
 
     private void Update()
