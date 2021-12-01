@@ -36,9 +36,9 @@ public class FoxMovement : MonoBehaviour
         
     }
 
-    private void TowardEventMovement(int eventID)
+    private void TowardEventMovement(string eventID)
     {
-        GameEvent e = (GameEvent) manager.Events.GetValue(eventID);
+        GameEvent e = manager.EventDict[eventID];
         Transform target = e.FoxTarget;
         BasicMovementFlow(target,2.0f);
     }

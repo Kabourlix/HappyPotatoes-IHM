@@ -2,11 +2,12 @@ using UnityEngine;
 
 namespace events
 {
-    public class GameEvent
+    public abstract class GameEvent
     {
         private string name;
         public string Name { get; private set; }
         private GameObject relatedObject;
+        public GameObject RelatedObject { get; set; }
         private Transform foxTarget;
         public Transform FoxTarget { get; private set; }
 
@@ -30,9 +31,7 @@ namespace events
             }
         }
 
-        public void PlayEventSequence()
-        {
-            //TODO : Add code here;
-        }
+        public abstract void PlayEventSequence();
+
     }
 }

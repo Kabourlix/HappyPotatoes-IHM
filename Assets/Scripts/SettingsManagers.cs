@@ -1,13 +1,19 @@
 using System;
+using System.Collections.Generic;
 using events;
 using UnityEngine;
 
 public class SettingsManagers : MonoBehaviour
 {
-
-    private GameEvent[] events;
-    public GameEvent[] Events { get; set; }
     
+    private GameEvent currentEvent;
+    private Dictionary<string, GameEvent> eventDict;
+
+    public Dictionary<string, GameEvent> EventDict { get; private set; }
+
+
+
+
     private bool isFoxFollowing;
 
     public bool IsFoxFollowing
@@ -28,7 +34,11 @@ public class SettingsManagers : MonoBehaviour
             Destroy(gameObject);    // Suppression d'une instance précédente (sécurité...sécurité...)
  
         instance = this;
+        eventDict = new Dictionary<string, GameEvent>();
     }
 
-
+    private void Start()
+    {
+        //TODO : We'll add here the functionning events.
+    }
 }

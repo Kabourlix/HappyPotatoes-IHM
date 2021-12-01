@@ -5,7 +5,7 @@ namespace events
 {
     public class EventsManager : MonoBehaviour
     {
-        private int[] eventListID;
+        [SerializeField] private GameObject[] EventObjectList; //! Pay attention this must match manager.nbOfGameEvents
         private int eventRate; // In events per minutes
 
         private SettingsManagers manager;
@@ -16,10 +16,10 @@ namespace events
         }
 
 
-        public void LaunchEvent(int eventID)
+        public void LaunchEvent(string eventID)
         {
             //Get the event from the list
-            GameEvent currentEvent = (GameEvent) manager.Events.GetValue(eventID);
+            GameEvent currentEvent = manager.EventDict[eventID];
             //Play the event itself
             currentEvent.PlayEventSequence();
             // Set the movement of the fox towards the event
