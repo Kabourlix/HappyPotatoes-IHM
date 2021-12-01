@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem.Interactions;
 
 namespace events
 {
@@ -10,7 +11,7 @@ namespace events
 
         public override void PlayEventSequence()
         {
-            throw new System.NotImplementedException();
+            RelatedObject.transform.position += Vector3.up*10;
         }
     }
 }

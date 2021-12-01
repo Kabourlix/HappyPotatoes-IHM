@@ -5,11 +5,19 @@ namespace events
     public abstract class GameEvent
     {
         private string name;
-        public string Name { get; private set; }
+        public string Name { get => name;protected set => name = value; }
         private GameObject relatedObject;
-        public GameObject RelatedObject { get; set; }
+        public GameObject RelatedObject { get => relatedObject; set => relatedObject = value; }
         private Transform foxTarget;
-        public Transform FoxTarget { get; private set; }
+        public Transform FoxTarget
+        {
+            get => foxTarget;
+            set
+            {
+                if (false) foxTarget = value;
+            }
+
+        }
 
         public GameEvent(string _name, GameObject _relatedObject)
         {

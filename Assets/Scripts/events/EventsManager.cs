@@ -5,23 +5,22 @@ namespace events
 {
     public class EventsManager : MonoBehaviour
     {
-        [SerializeField] private GameObject[] EventObjectList; //! Pay attention this must match manager.nbOfGameEvents
-        private int eventRate; // In events per minutes
+        [SerializeField] private int eventRate; // In events per minutes
 
         private SettingsManagers manager;
 
         private void Start()
         {
             manager = SettingsManagers.Instance;
+            manager.OnGameEventTriggered += ctx => LaunchEvent(ctx);
         }
 
 
-        public void LaunchEvent(string eventID)
+        private void LaunchEvent(GameEvent e)
         {
-            //Get the event from the list
-            GameEvent currentEvent = manager.EventDict[eventID];
+            //The current event is e;
             //Play the event itself
-            currentEvent.PlayEventSequence();
+            e.PlayEventSequence();
             // Set the movement of the fox towards the event
             manager.IsFoxFollowing = false; 
         }

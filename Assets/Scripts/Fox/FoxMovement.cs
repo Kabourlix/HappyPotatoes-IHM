@@ -12,6 +12,8 @@ public class FoxMovement : MonoBehaviour
     [SerializeField] private GameObject fox;
 
     private SettingsManagers manager;
+
+    
     
     private Animator foxAnimator;
     private float moveSpeed;
@@ -31,14 +33,14 @@ public class FoxMovement : MonoBehaviour
         }
         else
         {
-            //Another movement
+            TowardEventMovement();
         }
         
     }
 
-    private void TowardEventMovement(string eventID)
+    private void TowardEventMovement()
     {
-        GameEvent e = manager.EventDict[eventID];
+        GameEvent e = manager.CurrentEvent;
         Transform target = e.FoxTarget;
         BasicMovementFlow(target,2.0f);
     }
