@@ -17,7 +17,7 @@ public class TranslationBees : MonoBehaviour
     void Update()
     {
 
-        transform.Translate(new Vector3(0,0.003f*Mathf.Sin(oscillationspeed*Time.time),0));
+        transform.Translate(new Vector3(0.002f*Mathf.Cos(oscillationspeed*Time.time),0.003f*Mathf.Sin(oscillationspeed*Time.time),0));
         
     }
 }
