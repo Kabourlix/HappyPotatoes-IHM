@@ -24,7 +24,10 @@ namespace Player
             showShopMenu.action.performed += ctx => ShowShopMenu();
             isEnabled = false;
         }
-
+        
+        /***
+         * This function make the shop Menu appear in the user hands.
+         */
         private void ShowShopMenu()
         {
             gameObject.SetActive(!gameObject.activeInHierarchy);
