@@ -40,7 +40,7 @@ public class FoxMovement : MonoBehaviour
 
     private void TowardEventMovement()
     {
-        GameEvent e = manager.CurrentEvent;
+        GameEvent e = manager.EventList[manager.CurrentEvent];
         Transform target = e.FoxTarget;
         BasicMovementFlow(target,2.0f);
     }

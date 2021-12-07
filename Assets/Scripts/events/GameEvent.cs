@@ -23,7 +23,7 @@ namespace events
         {
             Name = _name;
             relatedObject = _relatedObject;
-            foxTarget = relatedObject.transform;
+            FoxTarget = relatedObject.transform;
         }
 
         public override bool Equals(object obj)

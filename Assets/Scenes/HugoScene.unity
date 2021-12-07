@@ -376,7 +376,8 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Event Input
       m_Flags: 0
-  potatoObjectEvent: {fileID: 1280691366}
+  eventsObject:
+  - {fileID: 1280691366}
 --- !u!4 &530734784
 Transform:
   m_ObjectHideFlags: 0
