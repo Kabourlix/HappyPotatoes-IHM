@@ -10,51 +10,30 @@ namespace Player
     public class ShopController : MonoBehaviour
     {
         public InputActionProperty showShopMenu;
+        private Rigidbody rb;
+        [SerializeField] private Transform leftController;
 
-        [SerializeField]
-        private GameObject menuObject;
-
-        [SerializeField] private GameObject leftController;
-        public float moveSpeed = 10.0f;
+        [Range(0.0f, 360.0f)] public float rotateBy = 10.0f;
         
-        private bool isAppearing;
+        
+        public bool isEnabled;
 
         private void Start()
         {
+            rb = GetComponent<Rigidbody>();
             showShopMenu.action.performed += ctx => ShowShopMenu();
-            isAppearing = false;
+            isEnabled = false;
         }
 
         private void ShowShopMenu()
         {
-            if (!isAppearing)
-            {
-                //TODO : Enhance the interaction to make the book coming into the player hand and attach it.
-                //menuObject.transform.position = transform.position;
-                //var position = menuObject.transform.position;
-                menuObject.SetActive(true);
-                isAppearing = true;
-            }
-            else
-            {
-                menuObject.SetActive(false);
-                isAppearing = false;
-            }
+            gameObject.SetActive(!gameObject.activeInHierarchy);
         }
 
         private void Update()
         {
-            if (isAppearing)
-            {
-                
-                Vector3 leftCtrlPos = leftController.transform.position;
-                menuObject.transform.position = Vector3.MoveTowards(menuObject.transform.position,
-                    leftCtrlPos, moveSpeed);
-                if (menuObject.transform.position == leftCtrlPos)
-                {
-                    isAppearing = false;
-                }
-            }
+            rb.MovePosition(leftController.position);
+            rb.MoveRotation(leftController.rotation*Quaternion.Euler(rotateBy,0,0));
         }
     }    
 }

@@ -320,7 +320,6 @@ GameObject:
   - component: {fileID: 189494214}
   - component: {fileID: 189494213}
   - component: {fileID: 189494215}
-  - component: {fileID: 189494216}
   m_Layer: 0
   m_Name: XR Rig
   m_TagString: Untagged
@@ -359,7 +358,7 @@ Transform:
   m_Children:
   - {fileID: 1882885429}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -89.83301, z: 0}
 --- !u!114 &189494215
 MonoBehaviour:
@@ -375,41 +374,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
---- !u!114 &189494216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 189494212}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 975ab93d22793456fbf48c84c78d4f03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showShopMenu:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Show Shop Menu
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: f3edade6-487e-421e-bc3c-5c715b205eaa
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 0c5abe1b-91e1-49b5-96a1-42fb385eca62
-        m_Path: <Keyboard>/r
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Show Shop Menu
-        m_Flags: 0
-    m_Reference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f,
-      type: 3}
-  menuObject: {fileID: 1312887081}
-  leftController: {fileID: 1345502923}
-  moveSpeed: 10
 --- !u!1 &202013410
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +584,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 617207238}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1909135830}
@@ -764,6 +728,7 @@ GameObject:
   - component: {fileID: 969436818}
   - component: {fileID: 969436817}
   - component: {fileID: 969436816}
+  - component: {fileID: 969436820}
   m_Layer: 0
   m_Name: Ray Interactor
   m_TagString: Untagged
@@ -1188,6 +1153,19 @@ MonoBehaviour:
   m_UseForceGrab: 1
   m_RotateSpeed: 180
   m_TranslateSpeed: 1
+--- !u!135 &969436820
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969436814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1312887081
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,13 +1178,15 @@ GameObject:
   - component: {fileID: 1312887084}
   - component: {fileID: 1312887083}
   - component: {fileID: 1312887082}
+  - component: {fileID: 1312887086}
+  - component: {fileID: 1312887087}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1312887082
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1274,13 +1254,56 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312887081}
-  m_LocalRotation: {x: -0, y: 0.706075, z: -0, w: 0.7081371}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.79, y: 0.56, z: 0}
+  m_LocalScale: {x: 0.30000007, y: 0.3, z: 1}
   m_Children: []
-  m_Father: {fileID: 1345502924}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1312887086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312887081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975ab93d22793456fbf48c84c78d4f03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  showShopMenu:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Show Shop Menu
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a4ea9636-8a64-4f77-ab29-36f0be0aad91
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: -5982496924579745919, guid: c348712bda248c246b8c49b3db54643f,
+      type: 3}
+  leftController: {fileID: 1345502924}
+  rotateBy: 10
+  isEnabled: 0
+--- !u!54 &1312887087
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312887081}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1345502923
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,8 +1330,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1312887085}
+  m_Children: []
   m_Father: {fileID: 755524375}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
