@@ -15,7 +15,7 @@ namespace Shop
             Transform[] allChildren = GetComponentsInChildren<Transform>();
             foreach (Transform child in transform)
             {
-                if (child.CompareTag("ControllerMode"))
+                if (child.CompareTag("shopMenu"))
                 {
                     children.Add(child.gameObject);
                 }
@@ -29,17 +29,17 @@ namespace Shop
             children[modeActive].SetActive(true);
         }
 
-        public void GoToBuyPage()
+        public void GoToBuyPage() // mode = 1
         {
             
         }
 
-        public void GoToWelcomePage()
+        public void GoToWelcomePage() //Mode = 0
         {
             
         }
 
-        public void GoToSellPage()
+        public void GoToSellPage() // mode = 2
         {
             
         }
