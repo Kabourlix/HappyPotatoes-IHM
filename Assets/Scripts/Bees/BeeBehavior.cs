@@ -6,9 +6,10 @@ public class BeeBehavior : MonoBehaviour
 {
     public Transform[] parents;
     private Transform currentparent;
+    private Transform inittransform;
     public Transform firsttarget; // comment on le généralise
     // Animations of the Bee
-    private Animation animations;
+    private Animator animations;
 
     // Comment on peut set des initpositions et intiorientations différentes pour chaque bees et les recup pour les remettre après
 
@@ -19,16 +20,32 @@ public class BeeBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        animations = gameObject.GetComponent<Animation>();
+        animations = gameObject.GetComponent<Animator>();
         currentparent = parents[0];
+        inittransform = transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (firsttarget.GetComponent<BeeBehavior>().IsDead )// AJOUTER LA FIN DE L'EVENT QUAND LES FROLONS SONT MORTS? RETOUR AU COMPORTEMENT INIT
+        // Behavior during the hornetevent, after the death of the firstbee
+        if (firsttarget.GetComponent<BeeBehavior>().IsDead && !isDead) //&& Time.time<60
         { 
             transform.parent = parents[1];
+            animations.Play("Move");
+        }
+        //Behavior after the hornetevent
+        /*else if(firsttarget.GetComponent<BeeBehavior>().IsDead && Time.time>60)// behavior évènement
+        {
+            transform.parent = parents[0];
+            transform.position=inittransform.position;
+            transform.rotation = inittransform.rotation;
+
+        }*/
+        if (isDead)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 0f, transform.position.z), 0.05f);
+            GetComponent<TranslationBees>().enabled = false;
         }
     }
 
@@ -47,10 +64,10 @@ public class BeeBehavior : MonoBehaviour
 
     public void Dead()
     {
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        transform.parent = parents[2];
         isDead = true;
         animations.Play("Death");
-        Destroy(transform.gameObject, 5);
+        Destroy(transform.gameObject, 15);
     }
     public bool IsDead
     {

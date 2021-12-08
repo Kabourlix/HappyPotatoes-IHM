@@ -18,6 +18,6 @@ public class TranslationBees : MonoBehaviour
     {
 
         transform.Translate(new Vector3(0.002f*Mathf.Cos(oscillationspeed*Time.time),0.003f*Mathf.Sin(oscillationspeed*Time.time),0));
-        
+        gameObject.GetComponent<Animator>().Play("Idle");
     }
 }

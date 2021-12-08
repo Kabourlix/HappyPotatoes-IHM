@@ -11,7 +11,7 @@ public class Hornetscript : MonoBehaviour
     private float Playerdistance;
 
     // List of potential
-    public Transform currenttarget;
+    public int currenttarget;
     public Transform[] targets;
     public Transform Player;
 
@@ -41,27 +41,36 @@ public class Hornetscript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agent = gameObject.GetComponent<NavMeshAgent>(); 
+        agent = gameObject.GetComponent<NavMeshAgent>();
+        agent.baseOffset= 1;
         animations = gameObject.GetComponent<Animator>();
         attackTime = Time.time;
-        print(agent);
     }
 
     // Update is called once per frame
     void Update()
     {
         updatetarget();
+        print(targets[currenttarget]);
+        // calculate the distance between the target and the hornet
+        TargetDistance = Vector3.Distance(targets[currenttarget].position, transform.position);
 
-        // On calcule la distance entre le joueur et l'enemy, en fonction de cette distance on effectue diverses actions
-        TargetDistance = Vector3.Distance(currenttarget.position, transform.position);
-
-        // Quand l'ennemi est proche mais pas assez pour attaquer
-        if (TargetDistance < chaseRange && TargetDistance > attackRange)
+        // when the target is too far to be attacked
+        if (TargetDistance > attackRange)
         {
-            chase();
+            float ydelta = targets[currenttarget].position.y - agent.baseOffset;
+            if (Mathf.Abs(ydelta) < 0.02f)
+            {
+                chase();
+            }
+
+            else
+            {
+                agent.baseOffset = agent.baseOffset + ydelta*0.1f ;                    
+            }
         }
 
-        // Quand l'enemy est assez proche pour attaquer
+        // when the target is near enough to be attacked
         if (TargetDistance < attackRange)
         {
             attack();
@@ -72,20 +81,16 @@ public class Hornetscript : MonoBehaviour
     void chase()
     {
         animations.Play("Move");
-        agent.destination = currenttarget.position;
+        agent.destination = targets[currenttarget].position;
     }
 
     void attack()
     {
-        // empeche l'enemy de traverser le joueur
-        agent.destination = transform.position;
-
-        //Si pas de cooldown
+        //Without cooldown
         if (Time.time > attackTime)
         {
             animations.Play("Attack");
-            currenttarget.GetComponent<BeeBehavior>().ApplyDammage(TheDammage);
-            //Debug.Log("L'ennemi a envoyÃ© " + TheDammage + " points de dÃ©gÃ¢ts");
+            targets[currenttarget].GetComponent<BeeBehavior>().ApplyDammage(TheDammage);
             attackTime = Time.time + attackRepeatTime;
         }
     }
@@ -104,7 +109,7 @@ public class Hornetscript : MonoBehaviour
     }
     public void Dead()
     {
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        //gameObject.GetComponent<CapsuleCollider>().enabled = false;
         isDead = true;
         animations.Play("Death");
         Destroy(transform.gameObject, 5);
@@ -112,18 +117,30 @@ public class Hornetscript : MonoBehaviour
 
     public void updatetarget()
     {
+        // Calculate the distance between 
         Playerdistance = Vector3.Distance(Player.position, transform.position);
-        if (Playerdistance<=attackRange)
+        
+        // Verifying that there is still a bee which lives
+        bool existlivingbee = false;
+        int i = 1;
+        while (i < targets.Length)
         {
-            currenttarget = Player;
+            if (!(targets[i] == null) && !targets[i].GetComponent<BeeBehavior>().IsDead)
+            {
+                existlivingbee = true;
+                break;
+            }
+            i++;
         }
-        else if (targets.Length>0 )
+
+        if (Playerdistance<=attackRange || (!existlivingbee))
         {
-            currenttarget = targets[0];
+            currenttarget = 0;
         }
-        else
+        else if (existlivingbee)
         {
-            currenttarget = Player;
+            currenttarget=i;
         }
+        
     }
 }
