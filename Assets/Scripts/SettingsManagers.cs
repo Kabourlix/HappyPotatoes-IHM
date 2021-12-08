@@ -12,7 +12,15 @@ public class SettingsManagers : MonoBehaviour
     [SerializeField] private GameObject[] eventsObject;
 
     private GameEvent[] eventList;
-    public GameEvent[] EventList { get; private set; }
+    public GameEvent[] EventList { 
+        get => eventList;
+        set
+        {
+            if(false)
+            {
+                eventList = value;
+            }   
+        } }
     
     private int currentEvent;
 
