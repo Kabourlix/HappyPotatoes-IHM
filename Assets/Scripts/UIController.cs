@@ -15,7 +15,7 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        disable = false;
+        disable = true;
         Menu.SetActive(true);
         Settings.SetActive(false);
         Button btn = SettingButton.GetComponent<Button>();
