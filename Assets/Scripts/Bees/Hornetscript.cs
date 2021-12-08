@@ -42,7 +42,7 @@ public class Hornetscript : MonoBehaviour
     void Start()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
-        agent.baseOffset= 1;
+        //agent.baseOffset= 1f ;
         animations = gameObject.GetComponent<Animator>();
         attackTime = Time.time;
     }
@@ -51,14 +51,14 @@ public class Hornetscript : MonoBehaviour
     void Update()
     {
         updatetarget();
-        print(targets[currenttarget]);
+       
         // calculate the distance between the target and the hornet
         TargetDistance = Vector3.Distance(targets[currenttarget].position, transform.position);
 
         // when the target is too far to be attacked
         if (TargetDistance > attackRange)
         {
-            float ydelta = targets[currenttarget].position.y - agent.baseOffset;
+            float ydelta = targets[currenttarget].position.y - transform.position.y;
             if (Mathf.Abs(ydelta) < 0.02f)
             {
                 chase();
@@ -66,8 +66,9 @@ public class Hornetscript : MonoBehaviour
 
             else
             {
-                agent.baseOffset = agent.baseOffset + ydelta*0.1f ;                    
+                agent.baseOffset += ydelta*0.05f ;                    
             }
+            //chase();
         }
 
         // when the target is near enough to be attacked
