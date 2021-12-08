@@ -36,7 +36,7 @@ namespace Player
         private void Update()
         {
             rb.MovePosition(leftController.position);
-            rb.MoveRotation(leftController.rotation*Quaternion.Euler(rotateBy,0,0));
+            //rb.MoveRotation(leftController.rotation*Quaternion.Euler(rotateBy,0,0));
         }
     }    
 }
