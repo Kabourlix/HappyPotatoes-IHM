@@ -80,4 +80,5 @@ namespace Shop
             currencyText.text = value.ToString();
         }
     }
+    
 }
