@@ -10,7 +10,7 @@ namespace Player
     public class ShopController : MonoBehaviour
     {
         public InputActionProperty showShopMenu;
-        private Rigidbody rb;
+        
         [SerializeField] private Transform leftController;
 
         [Range(0.0f, 360.0f)] public float rotateBy = 10.0f;
@@ -20,7 +20,6 @@ namespace Player
 
         private void Start()
         {
-            rb = GetComponent<Rigidbody>();
             showShopMenu.action.performed += ctx => ShowShopMenu();
             isEnabled = false;
         }
@@ -35,8 +34,7 @@ namespace Player
 
         private void Update()
         {
-            rb.MovePosition(leftController.position);
-            //rb.MoveRotation(leftController.rotation*Quaternion.Euler(rotateBy,0,0));
+            //transform.LookAt();
         }
     }    
 }
