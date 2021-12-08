@@ -11,7 +11,7 @@ namespace events
 
         public override void PlayEventSequence()
         {
-            RelatedObject.transform.position += Vector3.up*10;
+            //RelatedObject.transform.position += Vector3.up*10;
         }
 
         public override void PlaySoundSequence()
