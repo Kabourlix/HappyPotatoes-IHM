@@ -27,15 +27,14 @@ public class FoxMovement : MonoBehaviour
 
     private void Update()
     {
-        //if (manager.IsFoxFollowing)
-        if(true)
+        if (manager.IsFoxFollowing)
         {
             FollowingMovement();    
         }
         else
         {
-            //TowardEventMovement();
-            FollowingMovement();
+            TowardEventMovement();
+            
         }
         
     }
