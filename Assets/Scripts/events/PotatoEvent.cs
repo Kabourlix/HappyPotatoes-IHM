@@ -13,5 +13,10 @@ namespace events
         {
             RelatedObject.transform.position += Vector3.up*10;
         }
+
+        public override void PlaySoundSequence()
+        {
+            
+        }
     }
 }
