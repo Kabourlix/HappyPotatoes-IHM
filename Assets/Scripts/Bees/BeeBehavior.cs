@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackedBees : MonoBehaviour
+public class BeeBehavior : MonoBehaviour
 {
-
-    public Transform firsttarget;
+    public Transform[] parents;
+    private Transform currentparent;
+    public Transform firsttarget; // comment on le généralise
     // Animations of the Bee
     private Animation animations;
+
+    // Comment on peut set des initpositions et intiorientations différentes pour chaque bees et les recup pour les remettre après
 
     // Life of the Bee
     public float BeeHealth;
@@ -17,16 +20,16 @@ public class AttackedBees : MonoBehaviour
     void Start()
     {
         animations = gameObject.GetComponent<Animation>();
-
+        currentparent = parents[0];
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (firsttarget.GetComponent<AttackedBees>().IsDead){
-         GetComponent<TranslationBees>().enabled=false;
-         GetComponent<TranslationBees>().enabled=false;
-        
+        //if (firsttarget.GetComponent<BeeBehavior>().IsDead ){ // AJOUTER LA FIN DE L'EVENT QUAND LES FROLONS SONT MORTS? RETOUR AU COMPORTEMENT INIT
+        if (Time.time>10)
+        {
+            transform.parent = parents[1];
         }
     }
 

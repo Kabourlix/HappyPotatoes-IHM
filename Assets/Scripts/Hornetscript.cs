@@ -82,7 +82,7 @@ public class Hornetscript : MonoBehaviour
         if (Time.time > attackTime)
         {
             animations.Play("Attack");
-            currenttarget.GetComponent<AttackedBees>().ApplyDammage(TheDammage);
+            currenttarget.GetComponent<BeeBehavior>().ApplyDammage(TheDammage);
             //Debug.Log("L'ennemi a envoyÃ© " + TheDammage + " points de dÃ©gÃ¢ts");
             attackTime = Time.time + attackRepeatTime;
         }
