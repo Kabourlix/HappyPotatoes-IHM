@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.UI;
 
 namespace Shop
 {
     public class ShopUIInteraction : MonoBehaviour
     {
         //UI Objects
-        
+        [SerializeField] private Text currencyText;
         
         // end
         
@@ -15,9 +17,14 @@ namespace Shop
         
         
         private List<GameObject> children;
-        private int modeActive;
+
+        private SettingsManagers manager;
+        private ShopModel model;
         private void Start()
         {
+            manager = SettingsManagers.Instance;
+            model = ShopModel.Instance;
+            
             children = new List<GameObject>();
             Transform[] allChildren = GetComponentsInChildren<Transform>();
             foreach (Transform child in transform)
@@ -32,8 +39,11 @@ namespace Shop
             {
                 child.SetActive(false);
             }
-            modeActive = 0;
-            children[modeActive].SetActive(true);
+            model.ModeActive = 0;
+            children[model.ModeActive].SetActive(true);
+            
+            //Subscription
+            manager.OnCurrencyChange += UpdateCurrencyText;
         }
         
         private void PerformSwitchMode(int mode)
@@ -43,8 +53,8 @@ namespace Shop
                 child.SetActive(false);
             }
 
-            modeActive = mode;
-            children[modeActive].SetActive(true);
+            model.ModeActive = mode;
+            children[model.ModeActive].SetActive(true);
         }
         
         // Switching interface
@@ -61,6 +71,13 @@ namespace Shop
         public void GoToSellPage() // mode = 2
         {
             PerformSwitchMode(2);
+        }
+        
+        
+        // Link functions for models and so on
+        private void UpdateCurrencyText(int value)
+        {
+            currencyText.text = value.ToString();
         }
     }
 }
