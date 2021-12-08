@@ -7,8 +7,11 @@ namespace Shop
     public class ShopModel : MonoBehaviour
     {
         // Data in the shop, we store it here since it's tiny data
-        private List<Item> items; 
+        private List<Item> items;
+        private Item seed = new Item("Tree Seed","monChemin","Une petite graine d'un grand arbre du futur.", 10);
         
+        //
+
         public int ModeActive { get; set; }
 
         public static ShopModel Instance { get; private set; }
