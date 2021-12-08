@@ -14,7 +14,7 @@ namespace events
             get => foxTarget;
             set
             {
-                if (false) foxTarget = value;
+                foxTarget = value;
             }
 
         }
@@ -40,6 +40,6 @@ namespace events
         }
 
         public abstract void PlayEventSequence();
-
+        public abstract void PlaySoundSequence();
     }
 }

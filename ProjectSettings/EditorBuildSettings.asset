@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/scene.unity
     guid: 49fd4d3b9dff07149b9bb5f730093736
   - enabled: 1
-    path: Assets/Scenes/MaelysScene.unity
-    guid: 537cabdd30174824184df269a8cb92c2
+    path: Assets/Scenes/VRMovement.unity
+    guid: a6330e4cb925c490685ce280185a90db
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: af00b7279b24fc84e94d606f5e73948f,
       type: 2}
