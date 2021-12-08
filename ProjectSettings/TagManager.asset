@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hornet
   - Bee
+  - shopMenu
   layers:
   - Default
   - TransparentFX
