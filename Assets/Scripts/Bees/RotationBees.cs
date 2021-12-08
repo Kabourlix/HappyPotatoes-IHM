@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotationBees : MonoBehaviour
 {
-    public float rotationspeed = 3.0f;
+    public float rotationspeed = 1.0f;
     // Start is called before the first frame update
     void Start()
     {

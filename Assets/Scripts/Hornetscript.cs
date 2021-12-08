@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.AI;
 using UnityEngine;
 
 public class Hornetscript : MonoBehaviour
@@ -28,10 +29,10 @@ public class Hornetscript : MonoBehaviour
     public float TheDammage;
 
     // Agent de navigation
-    private UnityEngine.AI.NavMeshAgent agent;
+    private NavMeshAgent agent;
 
     // Animations  of the enemy
-    private Animation animations;
+    private Animator animations;
 
     // Life of the enemy
     public float enemyHealth;
@@ -40,9 +41,10 @@ public class Hornetscript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        agent = gameObject.GetComponent<UnityEngine.AI.NavMeshAgent>(); 
-        animations = gameObject.GetComponent<Animation>();
+        agent = gameObject.GetComponent<NavMeshAgent>(); 
+        animations = gameObject.GetComponent<Animator>();
         attackTime = Time.time;
+        print(agent);
     }
 
     // Update is called once per frame

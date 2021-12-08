@@ -26,9 +26,8 @@ public class BeeBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (firsttarget.GetComponent<BeeBehavior>().IsDead ){ // AJOUTER LA FIN DE L'EVENT QUAND LES FROLONS SONT MORTS? RETOUR AU COMPORTEMENT INIT
-        if (Time.time>10)
-        {
+        if (firsttarget.GetComponent<BeeBehavior>().IsDead )// AJOUTER LA FIN DE L'EVENT QUAND LES FROLONS SONT MORTS? RETOUR AU COMPORTEMENT INIT
+        { 
             transform.parent = parents[1];
         }
     }
