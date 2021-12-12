@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Launch : MonoBehaviour
+public class PlayButton : MonoBehaviour
 {
-    public Vector3 CamStartLocation =  new Vector3(10075, 2, 30);
-    public Quaternion CamStartRotation =  Quaternion.Euler(0, -160, 0);
+    public Vector3 CamStartLocation = new Vector3(0, 2, 0);
+    public Quaternion CamStartRotation = Quaternion.Euler(0, 0, 0);
 
 
     // Put camera in X :10070, Y : 2, Z: -7
     // Rotation : 0,-160,0
     // Start is called before the first frame update
-    void Start()
+    public void go2playGround()
     {
         transform.position = CamStartLocation;
         transform.rotation = CamStartRotation;
