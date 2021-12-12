@@ -93,6 +93,8 @@ public class HornetAttack : MonoBehaviour
 
     public void ApplyDammage(float TheDammage)
     {
+
+
         if (!isDead)
         {
             enemyHealth = enemyHealth - TheDammage;
@@ -125,6 +127,19 @@ public class HornetAttack : MonoBehaviour
         else
         {
             currenttarget = Player;
+        }
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+
+        Debug.Log("Collision detected");
+        Debug.Log(enemyHealth.ToString());
+
+        if(other.gameObject.tag == "Shovel")
+        {
+            Debug.Log("Collision with shovel");
+            ApplyDammage(10f);
         }
     }
 }
