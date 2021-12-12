@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Go2menu : MonoBehaviour
+public class SettingButton : MonoBehaviour
 {
     public GameObject Menu;
     public GameObject Settings;
