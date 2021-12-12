@@ -28,7 +28,7 @@ public class Hornetscript : MonoBehaviour
     // Amount of the inflicted dammage
     public float TheDammage;
 
-    // Agent de navigation
+    // Agent of navigation
     private NavMeshAgent agent;
 
     // Animations  of the enemy

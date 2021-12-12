@@ -14,5 +14,10 @@ namespace events
         {
             throw new System.NotImplementedException();
         }
+
+        public override void PlaySoundSequence()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
