@@ -4,18 +4,28 @@ namespace events
 {
     public class PollutionEvent : GameEvent
     {
+        
+        // Wateringcan
+        public GameObject wateringcan;
         public PollutionEvent(string _name, GameObject _relatedObject) : base(_name, _relatedObject)
         {
+
         }
 
         public override void PlayEventSequence()
         {
-            throw new System.NotImplementedException();
+            //Apparition of fog
+
+            //Unlocking seeds in PorkShop
+
+            //Enable Seed planting
         }
 
         public override void PlaySoundSequence()
         {
             throw new System.NotImplementedException();
         }
+
+        
     }
 }

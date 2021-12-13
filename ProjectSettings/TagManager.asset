@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Hornet
   - Bee
+  - Wateringcan
   layers:
   - Default
   - TransparentFX
