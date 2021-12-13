@@ -40,7 +40,7 @@ public class HoneyValve : MonoBehaviour
         {
             honeyinstock = true; 
         }
-        print(honeyinstock);
+        //print(honeyinstock);
         // if the valve is open and there is honey in stock
         if (open && honeyinstock)
         {

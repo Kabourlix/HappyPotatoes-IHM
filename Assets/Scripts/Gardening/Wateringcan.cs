@@ -5,28 +5,30 @@ using UnityEngine;
 public class Wateringcan : MonoBehaviour
 {
     // If the can is grabbed
-    private bool isGrabbed;
+    private bool isGrabed;
+    
 
     // Start is called before the first frame update
     void Start()
     {
-        isGrabbed = false;
+        isGrabed = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isGrabbed)
+        if (true)
         {
-            Transform initpointray = transform.Find("Raybegin").transform;
-            Ray ray = new Ray(initpointray.position, Vector3.forward);
+            Ray ray = new Ray(transform.position, Vector3.forward*10);
             RaycastHit hit;
+            Debug.DrawRay(transform.position, Vector3.forward,Color.blue);
 
             if (Physics.Raycast(ray, out hit, 2f))
             {
+                print(hit.transform.tag);
                 if (hit.transform.tag == "seed")
                 {
-                    //hit.transform.GetComponent<>();
+                    hit.transform.GetComponent<Grow>().grow();
                 }
             }
         }
@@ -35,11 +37,11 @@ public class Wateringcan : MonoBehaviour
 
     public void OnGrabbed()
     {
-        isGrabbed = true;
+        isGrabed = true;
     }
     
     public void ExitGrab()
     {
-        isGrabbed = false;
+        isGrabed = false;
     }
 }
