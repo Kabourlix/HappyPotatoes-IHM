@@ -96,12 +96,17 @@ public class HornetAttack : MonoBehaviour
 
     public void ApplyDammage(float TheDammage)
     {
-        
+
+        Debug.Log("in dammage");
+        Debug.Log("ennemy health: " + enemyHealth.ToString());
 
         if (!isDead)
         {
+
+            Debug.Log("not dead");
             enemyHealth = enemyHealth - TheDammage;
             animations.Play("Damage");
+
             if (enemyHealth <= 0)
             {
                 Dead();
@@ -110,6 +115,8 @@ public class HornetAttack : MonoBehaviour
     }
     public void Dead()
     {
+
+        Debug.Log("in dead");
         gameObject.GetComponent<CapsuleCollider>().enabled = false;
         isDead = true;
         animations.Play("Death");
