@@ -115,15 +115,19 @@ namespace Shop
 
         public void BuyItem(int position)
         {
-            int i = model.GetItemIndexByPosition(currentCategory, position);
-            print("We got the following item : "  + model.GetName(i));
-            
+            Item i = model.GetItemByPosition(currentCategory, position);
+
             //Adjust the player's currency
-            manager.Currency -= model.GetPrice(i);
+            manager.Currency -= i.Price;
             
             //Deal with the bought item spawning.
             print("Before entering");
-            model.SpawnBoughtItem(i);
+            SpawnItem(i);
+        }
+
+        private void SpawnItem(Item i)
+        {
+            Instantiate(i.Prefab, Vector3.forward, Quaternion.identity);
         }
     }
     
