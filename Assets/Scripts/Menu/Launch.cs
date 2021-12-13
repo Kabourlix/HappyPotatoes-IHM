@@ -16,6 +16,5 @@ public class Launch : MonoBehaviour
         transform.position = CamStartLocation;
         transform.rotation = CamStartRotation;
 
-
     }
 }
