@@ -147,7 +147,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 4, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1353861387}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -603,7 +604,7 @@ PrefabInstance:
     - target: {fileID: 1470797914992108309, guid: 8a6d9515854ae49418029717fa1817d9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToBuyPage
+      value: BuyItem
       objectReference: {fileID: 0}
     - target: {fileID: 1470797914992108309, guid: 8a6d9515854ae49418029717fa1817d9,
         type: 3}
@@ -1138,6 +1139,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currencyText: {fileID: 938374959}
   buyElement: {fileID: 1302684382}
+  test:
+    m_Name: Test
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: ca9e66ac-465d-4a22-872a-8497ce2c3777
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 7cac848e-d170-4017-bc26-0c35cece9323
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Test
+      m_Flags: 0
 --- !u!114 &263842313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1158,7 +1175,6 @@ MonoBehaviour:
   - {fileID: 183677753401034748, guid: 3861507635c1642fd9fbd323e0e7d54c, type: 3}
   - {fileID: 183677753401034748, guid: ad160aa3c875b483c94d8764a4056f58, type: 3}
   - {fileID: 183677753401034748, guid: c91527dd182a34cc08b3d9c05ad0ade4, type: 3}
-  spawnPosition: {fileID: 37710714}
 --- !u!1 &284611489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1681,7 +1697,7 @@ PrefabInstance:
     - target: {fileID: 1470797914992108309, guid: 8a6d9515854ae49418029717fa1817d9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToBuyPage
+      value: BuyItem
       objectReference: {fileID: 0}
     - target: {fileID: 1470797914992108309, guid: 8a6d9515854ae49418029717fa1817d9,
         type: 3}
@@ -2393,7 +2409,7 @@ PrefabInstance:
     - target: {fileID: 1470797914992108309, guid: 8a6d9515854ae49418029717fa1817d9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToBuyPage
+      value: BuyItem
       objectReference: {fileID: 0}
     - target: {fileID: 1470797914992108309, guid: 8a6d9515854ae49418029717fa1817d9,
         type: 3}
@@ -3828,6 +3844,99 @@ Transform:
   m_Father: {fileID: 969436815}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1353861386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1353861387}
+  - component: {fileID: 1353861390}
+  - component: {fileID: 1353861389}
+  - component: {fileID: 1353861388}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1353861387
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353861386}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 37710715}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1353861388
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353861386}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &1353861389
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353861386}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1353861390
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353861386}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1544195282
 GameObject:
   m_ObjectHideFlags: 0
@@ -4029,7 +4138,7 @@ PrefabInstance:
     - target: {fileID: 1470797914992108309, guid: 8a6d9515854ae49418029717fa1817d9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToBuyPage
+      value: BuyItem
       objectReference: {fileID: 0}
     - target: {fileID: 1470797914992108309, guid: 8a6d9515854ae49418029717fa1817d9,
         type: 3}
@@ -4925,7 +5034,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabList: []
-  spawnPosition: {fileID: 0}
 --- !u!4 &1953225842
 Transform:
   m_ObjectHideFlags: 0
@@ -5078,7 +5186,7 @@ PrefabInstance:
     - target: {fileID: 1470797914992108309, guid: 8a6d9515854ae49418029717fa1817d9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToBuyPage
+      value: BuyItem
       objectReference: {fileID: 0}
     - target: {fileID: 1470797914992108309, guid: 8a6d9515854ae49418029717fa1817d9,
         type: 3}
@@ -5464,7 +5572,7 @@ PrefabInstance:
     - target: {fileID: 1470797914992108309, guid: 8a6d9515854ae49418029717fa1817d9,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToBuyPage
+      value: BuyItem
       objectReference: {fileID: 0}
     - target: {fileID: 1470797914992108309, guid: 8a6d9515854ae49418029717fa1817d9,
         type: 3}

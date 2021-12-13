@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
@@ -21,12 +23,14 @@ namespace Shop
         
         private List<GameObject> children;
         private SettingsManagers manager;
-        private ShopModel model;
+
+        [NotNull] private ShopModel model;
 
         private int currentCategory;
         private void Start()
         {
             manager = SettingsManagers.Instance;
+            print(ShopModel.Instance);
             model = ShopModel.Instance;
             
             //Get the specific items
@@ -56,8 +60,16 @@ namespace Shop
             //Subscription
             manager.OnCurrencyChange += UpdateCurrencyText;
             
-            
+            test.Enable();
+            test.performed += ctx =>
+            {
+                GoToBuyPage(0);
+                BuyItem(0);
+            };
+
         }
+
+        public InputAction test;
         
         private void PerformSwitchMode(int mode)
         {
@@ -80,6 +92,7 @@ namespace Shop
 
             currentCategory = i;
             shopItemList[currentCategory].SetActive(true);
+            print("Current Category is " + currentCategory);
             PerformSwitchMode(1);
         }
 
@@ -102,12 +115,14 @@ namespace Shop
 
         public void BuyItem(int position)
         {
-            Item i = model.GetItemByPosition(currentCategory, position);
+            int i = model.GetItemIndexByPosition(currentCategory, position);
+            print("We got the following item : "  + model.GetName(i));
             
             //Adjust the player's currency
-            manager.Currency -= i.Price;
+            manager.Currency -= model.GetPrice(i);
             
             //Deal with the bought item spawning.
+            print("Before entering");
             model.SpawnBoughtItem(i);
         }
     }

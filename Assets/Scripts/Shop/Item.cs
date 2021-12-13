@@ -10,13 +10,7 @@ namespace Shop
         public string Path { get; }
         public int Price { get; }
 
-        private GameObject prefab;
-
-        public GameObject Prefab
-        {
-            get => prefab;
-            set => prefab = value;
-        }
+        public GameObject Prefab { get; set; }
 
         public Item(int category, string name,string imgPath, int price)
         {
@@ -25,7 +19,7 @@ namespace Shop
             isSellable = true;
             Path = imgPath; //! This might causes issue in the future (if the image is not loaded for example)
             this.Price = price;
-            prefab = null;
+            Prefab = null;
         }
             
         
