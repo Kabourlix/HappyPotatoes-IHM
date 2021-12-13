@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Controls;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 namespace Shop
 {
@@ -10,16 +11,18 @@ namespace Shop
     {
         //UI Objects
         [SerializeField] private Text currencyText;
-        
+
+        private List<GameObject> shopItemList;
         // end
         
         
         
         
         private List<GameObject> children;
-
         private SettingsManagers manager;
         private ShopModel model;
+
+        private int currentCategory;
         private void Start()
         {
             manager = SettingsManagers.Instance;
@@ -44,6 +47,13 @@ namespace Shop
             
             //Subscription
             manager.OnCurrencyChange += UpdateCurrencyText;
+            
+            //Get the specific items 
+            foreach (Transform child in children[1].GetComponentInChildren<Transform>()
+                         .GetComponentsInChildren<Transform>())
+            {
+                shopItemList.Add(child.gameObject);
+            }
         }
         
         private void PerformSwitchMode(int mode)
@@ -58,8 +68,15 @@ namespace Shop
         }
         
         // Switching interface
-        public void GoToBuyPage() // mode = 1
+        public void GoToBuyPage(int i) // mode = 1
         {
+            foreach (GameObject shopList in shopItemList)
+            {
+                shopList.SetActive(false);
+            }
+
+            currentCategory = i;
+            shopItemList[currentCategory].SetActive(true);
             PerformSwitchMode(1);
         }
 
@@ -78,6 +95,17 @@ namespace Shop
         private void UpdateCurrencyText(int value)
         {
             currencyText.text = value.ToString();
+        }
+
+        public void BuyItem(int position)
+        {
+            ShopModel.Item i = model.GetItemByPosition(currentCategory, position);
+            
+            //Adjust the player's currency
+            manager.Currency -= i.Price;
+            
+            //Deal with the bought item spawning.
+            model.SpawnBoughtItem(i);
         }
     }
     
