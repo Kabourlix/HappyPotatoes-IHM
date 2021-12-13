@@ -9,7 +9,9 @@ public class HoneyValve : MonoBehaviour
     public GameObject target;
     public float speed = 0.01f;
     private Vector3 targetPosition;
+    private Transform inittransform;
     private float inityrotation;
+    private bool isHold;
     
 
     //Honey spawning
@@ -22,7 +24,12 @@ public class HoneyValve : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        inityrotation = transform.rotation.y;
+        // About the valve
+        inittransform = transform;
+        inityrotation = inittransform.rotation.y;
+        isHold = false;
+
+        //About the honey
         honeyinstock = false;
         timeinterval = 30f;
         tick = timeinterval;
@@ -33,14 +40,26 @@ public class HoneyValve : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // Movement of the valve if it's hold
+        if (isHold)
+        {
+            targetPosition = target.transform.position;
+
+            if (Vector3.Distance(transform.eulerAngles, targetPosition) > 0.01f)
+            {
+                Quaternion a = new Quaternion(inittransform.rotation.x, Mathf.Acos((transform.position.x - targetPosition.x) / (transform.position.z - targetPosition.z)), inittransform.rotation.z, inittransform.rotation.w);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, a, Time.time * speed);
+            }
+        }
+        // Verifying that the distance is enough so that the valve is open
         bool open = Mathf.Abs(transform.rotation.y - inityrotation) > 90;
-        //bool open = true;
         
+        // if there is honey in stock
         if((int)Time.time == tick)
         {
             honeyinstock = true; 
         }
-        print(honeyinstock);
+
         // if the valve is open and there is honey in stock
         if (open && honeyinstock)
         {
@@ -53,28 +72,20 @@ public class HoneyValve : MonoBehaviour
 
     public void OnSelectEntered()
     {
-        targetPosition = target.transform.position;
-
-        //if (Vector3.Distance(transform.eulerAngles, targetPosition) > 0.01f )
-        if(true)
-        {
-            Quaternion a = new Quaternion(transform.rotation.x,Mathf.Acos((transform.position.x- targetPosition.x)/ (transform.position.z - targetPosition.z)), transform.rotation.z, transform.rotation.w);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, a,Time.time * speed);
-        }
+        isHold = true;
     }
     public void OnSelectExited()
     {
+        isHold = false; 
         inityrotation = transform.rotation.y;
     }
 
     public void honeymelting()
     {
         // Dupplication
-        GameObject o = Instantiate(originalhoney);
+        GameObject o = Instantiate(originalhoney, inithoneyposition, new Quaternion(0,0,0,0),originalhoney.transform.parent);
         o.GetComponent<Rigidbody>().useGravity = false;
         o.GetComponent<XRGrabInteractable>().enabled = false;
-        o.transform.position = inithoneyposition;
-        o.transform.parent = originalhoney.transform.parent;
         o.transform.localScale= new Vector3(8,8,8);
 
         //Melting
