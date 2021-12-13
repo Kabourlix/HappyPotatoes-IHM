@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using events;
 
-public class Fox_bark : MonoBehaviour
+public class FoxBark : MonoBehaviour
 {
     [SerializeField] private AudioSource barkEvent;
     [SerializeField] private AudioSource normalBark;
@@ -25,5 +25,4 @@ public class Fox_bark : MonoBehaviour
         barkEvent.Pause();
         normalBark.Play();
     }
-
 }

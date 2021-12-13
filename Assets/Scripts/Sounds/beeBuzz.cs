@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class beeBuzz : MonoBehaviour
 {
-    public List<GameObject> happy;
-    public List<GameObject> sad;
+    public List<AudioSource> happy;
+    public List<AudioSource> sad;
     public List<float> delays;
+    private bool inCoolDown;
 
     private void Start()
     {
-        
+        launch();
         HornetAttackEvent.current.onSadBees += SadBees;
     }
 
@@ -20,27 +21,33 @@ public class beeBuzz : MonoBehaviour
     {
         for (int i = 0; i < happy.Count; i++)
         {
-            PlaySadBeeAfterDelay(delays[i]);
-            sad[i].SetActive(false);
-            happy[i].SetActive(true);
+            happy[i].PlayDelayed(delays[i]);
+            sad[i].Pause();
         }
     }
 
     public void SadBees()
     {
-        for(int i = 0; i < happy.Count; i++)
+        for (int i = 0; i < happy.Count; i++)
         {
-            PlaySadBeeAfterDelay(delays[i]);
-            happy[i].SetActive(false);
-            sad[i].SetActive(true);
+            sad[i].PlayDelayed(delays[i]);
+            happy[i].Pause();
         }
     }
 
-    IEnumerator PlaySadBeeAfterDelay(float delay)
+    public void launch()
     {
-        yield return new WaitForSeconds(delay);
+        for (int i = 0; i < happy.Count; i++)
+        {
+            happy[i].PlayDelayed(delays[i]);
+        }
     }
 
-
+    private IEnumerator PlaySadBeeAfterDelay(float delay)
+    {
+        inCoolDown = true;
+        yield return new WaitForSeconds(delay);
+        inCoolDown = false;
+    }
 
 }
