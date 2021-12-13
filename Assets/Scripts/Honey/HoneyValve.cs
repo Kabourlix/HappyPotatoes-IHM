@@ -24,23 +24,24 @@ public class HoneyValve : MonoBehaviour
     {
         inityrotation = transform.rotation.y;
         honeyinstock = false;
-        timeinterval = 10f;
+        timeinterval = 30f;
         tick = timeinterval;
         inithoneyposition = originalhoney.transform.position;
+        originalhoney.GetComponent<XRGrabInteractable>().enabled = false;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        //bool open = Mathf.Abs(transform.rotation.y - inityrotation) > 90;
-        bool open = true;
+        bool open = Mathf.Abs(transform.rotation.y - inityrotation) > 90;
+        //bool open = true;
         
         if((int)Time.time == tick)
         {
             honeyinstock = true; 
         }
         print(honeyinstock);
-        // if the valve is open
+        // if the valve is open and there is honey in stock
         if (open && honeyinstock)
         {
             honeymelting();
@@ -50,16 +51,18 @@ public class HoneyValve : MonoBehaviour
         }
     }
 
-    void OnSelectEnter()
+    public void OnSelectEntered()
     {
         targetPosition = target.transform.position;
 
-        if (Vector3.Distance(transform.eulerAngles, targetPosition) > 0.01f )
+        //if (Vector3.Distance(transform.eulerAngles, targetPosition) > 0.01f )
+        if(true)
         {
-            transform.eulerAngles = Vector3.Lerp(transform.rotation.eulerAngles, targetPosition, Time.time * speed);
+            Quaternion a = new Quaternion(transform.rotation.x,Mathf.Acos((transform.position.x-target.transform.position.x)/ (transform.position.z - target.transform.position.z)), transform.rotation.z, transform.rotation.w);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, a,Time.time * speed);
         }
     }
-    void OnSelectExited()
+    public void OnSelectExited()
     {
         inityrotation = transform.rotation.y;
     }
@@ -69,15 +72,16 @@ public class HoneyValve : MonoBehaviour
         // Dupplication
         GameObject o = Instantiate(originalhoney);
         o.GetComponent<Rigidbody>().useGravity = false;
+        o.GetComponent<XRGrabInteractable>().enabled = false;
         o.transform.position = inithoneyposition;
         o.transform.parent = originalhoney.transform.parent;
         o.transform.localScale= new Vector3(8,8,8);
 
         //Melting
+        originalhoney.GetComponent<XRGrabInteractable>().enabled = true;
         originalhoney.GetComponent<Rigidbody>().useGravity = true;
 
         // Instantiation
         originalhoney = o;
-
     }
 }
