@@ -11,6 +11,7 @@ namespace Shop
     {
         //UI Objects
         [SerializeField] private Text currencyText;
+        [SerializeField] private Transform buyElement;
 
         private List<GameObject> shopItemList;
         // end
@@ -27,6 +28,13 @@ namespace Shop
         {
             manager = SettingsManagers.Instance;
             model = ShopModel.Instance;
+            
+            //Get the specific items
+            shopItemList = new List<GameObject>();
+            foreach (Transform child in buyElement)
+            {
+                shopItemList.Add(child.gameObject);
+            }
             
             children = new List<GameObject>();
             Transform[] allChildren = GetComponentsInChildren<Transform>();
@@ -48,12 +56,7 @@ namespace Shop
             //Subscription
             manager.OnCurrencyChange += UpdateCurrencyText;
             
-            //Get the specific items 
-            foreach (Transform child in children[1].GetComponentInChildren<Transform>()
-                         .GetComponentsInChildren<Transform>())
-            {
-                shopItemList.Add(child.gameObject);
-            }
+            
         }
         
         private void PerformSwitchMode(int mode)

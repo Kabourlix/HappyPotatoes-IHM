@@ -10,18 +10,12 @@ namespace Player
     public class ShopController : MonoBehaviour
     {
         public InputActionProperty showShopMenu;
-        
-        [SerializeField] private Transform leftController;
 
-        [Range(0.0f, 360.0f)] public float rotateBy = 10.0f;
-        
-        
-        public bool isEnabled;
-
+        [SerializeField] private GameObject teleportController;
+        [SerializeField] private GameObject shopController;
         private void Start()
         {
             showShopMenu.action.performed += ctx => ShowShopMenu();
-            isEnabled = false;
         }
         
         /***
@@ -29,13 +23,11 @@ namespace Player
          */
         private void ShowShopMenu()
         {
-            gameObject.SetActive(!gameObject.activeInHierarchy);
+            teleportController.SetActive(!teleportController.activeInHierarchy);
+            shopController.SetActive(!shopController.activeInHierarchy);
+            //gameObject.SetActive(!gameObject.activeInHierarchy);
         }
 
-        private void Update()
-        {
-            //transform.LookAt();
-        }
     }    
 }
 

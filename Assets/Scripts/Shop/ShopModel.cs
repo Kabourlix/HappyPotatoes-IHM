@@ -80,7 +80,7 @@ namespace Shop
         {
             GameObject o = i.Prefab;
             Transform parent = spawnPosition.transform;
-            Instantiate(o, parent.position - Vector3.down*5, Quaternion.identity, parent);
+            Instantiate(o, parent.position - Vector3.down*2, Quaternion.identity, parent);
         }
         
         
