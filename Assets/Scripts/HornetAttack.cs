@@ -15,6 +15,9 @@ public class HornetAttack : MonoBehaviour
     public Transform[] targets;
     public Transform Player;
 
+    // Sound when the shovel hits the hornet
+    public AudioSource hit;
+
     //Distance of pursuit
     public float chaseRange = 10;
 
@@ -135,11 +138,14 @@ public class HornetAttack : MonoBehaviour
 
         Debug.Log("Collision detected");
         Debug.Log(enemyHealth.ToString());
+        
+        hit.Play ();
 
-        if(other.gameObject.tag == "Shovel")
-        {
-            Debug.Log("Collision with shovel");
-            ApplyDammage(10f);
-        }
+        //if(other.tag == "Shovel")
+        //{
+            
+        Debug.Log("Collision with shovel");
+        ApplyDammage(TheDammage);
+        //}
     }
 }
