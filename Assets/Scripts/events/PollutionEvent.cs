@@ -5,8 +5,7 @@ namespace events
     public class PollutionEvent : GameEvent
     {
         
-        // Wateringcan
-        public GameObject wateringcan;
+        
         public PollutionEvent(string _name, GameObject _relatedObject) : base(_name, _relatedObject)
         {
 

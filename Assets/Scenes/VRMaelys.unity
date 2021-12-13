@@ -2165,6 +2165,7 @@ GameObject:
   - component: {fileID: 2121526582}
   - component: {fileID: 2121526580}
   - component: {fileID: 2121526584}
+  - component: {fileID: 2121340305}
   m_Layer: 0
   m_Name: Valve
   m_TagString: Untagged
@@ -2172,6 +2173,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &2121340305
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121340304}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.27705264, y: 0.048803233, z: 0.27786645}
+  m_Center: {x: 0, y: 0.014500089, z: 0}
 --- !u!1 &2121348532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2183,6 +2197,7 @@ GameObject:
   - component: {fileID: 2121619532}
   - component: {fileID: 2118185894}
   - component: {fileID: 2119216804}
+  - component: {fileID: 2121348533}
   m_Layer: 0
   m_Name: Tube_WaterTap
   m_TagString: Untagged
@@ -2190,6 +2205,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!65 &2121348533
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121348532}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.40934625, y: 0.54677653, z: 0.84000003}
+  m_Center: {x: 0, y: 0.06871515, z: 0}
 --- !u!1 &2121365604
 GameObject:
   m_ObjectHideFlags: 0
@@ -2232,10 +2260,10 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 94
   m_CollisionDetection: 0
 --- !u!114 &2121526584
 MonoBehaviour:
@@ -2344,7 +2372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121337140}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.9952045e-18, y: -1.1557268, z: 1.9984014e-18}
+  m_LocalPosition: {x: -5.9952045e-18, y: 0.05, z: 1.9984014e-18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2121583060}
@@ -2358,7 +2386,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121365604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.21379, y: 1.4, z: 23.986477}
+  m_LocalPosition: {x: -11.21379, y: 0.793, z: 23.986477}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 2121572546}
@@ -2375,7 +2403,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121340304}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0658141e-17, y: -1.0594014, z: -2.1316282e-17}
+  m_LocalPosition: {x: 1.0658141e-17, y: 0.14632535, z: -2.1316282e-17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2121583060}
@@ -2389,7 +2417,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121348532}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.46, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2542733, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2121583060}

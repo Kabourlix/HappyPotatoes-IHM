@@ -24,10 +24,17 @@ public class Grow : MonoBehaviour
 
     public void grow()
     {
+        // Modification of the statistics
         growthBar += 0.05f;
         if (growthBar> maxGrowth)
         {
+            // Apparition of the new grown plant
+            Vector3 position = new Vector3(transform.position.x, -1.15473e-05f  , transform.position.z);
             GameObject grownplant = Instantiate(grownmodel, transform.position, new Quaternion(0,0,0,0),transform.parent);
+            grownplant.AddComponent<Rigidbody>();
+            grownplant.GetComponent<Rigidbody>().useGravity=true;
+
+            // Destruction of the seed
             Destroy(transform.gameObject);
         }
     }
