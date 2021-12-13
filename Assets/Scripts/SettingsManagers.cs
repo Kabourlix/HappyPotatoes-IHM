@@ -42,6 +42,18 @@ public class SettingsManagers : MonoBehaviour
         get => isFoxFollowing;
         set => isFoxFollowing = value;
     }
+
+    private int currency;
+
+    public int Currency
+    {
+        get => currency;
+        set
+        {
+            currency = value;
+            CurrencyChange(value);
+        }
+    }
     
     private static SettingsManagers instance;
     private SettingsManagers(){} //au cas où certains fous tenteraient qd même d'utiliser le mot clé "new"
@@ -79,5 +91,12 @@ public class SettingsManagers : MonoBehaviour
     private void GameEventTriggered(int e_index)
     {
         OnGameEventTriggered?.Invoke(e_index);
+    }
+
+    public event Action<int> OnCurrencyChange;
+
+    private void CurrencyChange(int new_value)
+    {
+        OnCurrencyChange?.Invoke(new_value);
     }
 }
