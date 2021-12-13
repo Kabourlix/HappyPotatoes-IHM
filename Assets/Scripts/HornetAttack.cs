@@ -96,7 +96,7 @@ public class HornetAttack : MonoBehaviour
 
     public void ApplyDammage(float TheDammage)
     {
-
+        
 
         if (!isDead)
         {
@@ -141,11 +141,11 @@ public class HornetAttack : MonoBehaviour
         
         hit.Play ();
 
-        //if(other.tag == "Shovel")
-        //{
+        if(other.tag == "Shovel")
+        {
             
-        Debug.Log("Collision with shovel");
-        ApplyDammage(TheDammage);
-        //}
+            Debug.Log("Collision with shovel");
+            ApplyDammage(TheDammage);
+        }
     }
 }
