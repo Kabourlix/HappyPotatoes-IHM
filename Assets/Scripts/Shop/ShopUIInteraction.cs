@@ -99,7 +99,7 @@ namespace Shop
 
         public void BuyItem(int position)
         {
-            ShopModel.Item i = model.GetItemByPosition(currentCategory, position);
+            Item i = model.GetItemByPosition(currentCategory, position);
             
             //Adjust the player's currency
             manager.Currency -= i.Price;
