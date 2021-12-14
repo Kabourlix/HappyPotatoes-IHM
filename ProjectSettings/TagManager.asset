@@ -7,6 +7,9 @@ TagManager:
   - Hornet
   - Bee
   - shopMenu
+  - Wateringcan
+  - seed
+  - mud
   layers:
   - Default
   - TransparentFX
