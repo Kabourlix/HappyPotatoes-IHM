@@ -6,35 +6,6 @@ using UnityEngine.InputSystem;
 
 public class SettingsManagers : MonoBehaviour
 {
-    // Temporary for testing
-    public InputAction eventInput;
-    /// 
-    [SerializeField] private GameObject[] eventsObject;
-
-    private GameEvent[] eventList;
-    public GameEvent[] EventList { 
-        get => eventList;
-        set
-        {
-            if(false)
-            {
-                eventList = value;
-            }   
-        } }
-    
-    private int currentEvent;
-
-    public int CurrentEvent
-    {
-        get => currentEvent;
-        set
-        {
-            currentEvent = value;
-            GameEventTriggered(value);
-        }
-    }
-
-
     private bool isFoxFollowing;
 
     public bool IsFoxFollowing
@@ -68,31 +39,11 @@ public class SettingsManagers : MonoBehaviour
  
         Instance = this;
         IsFoxFollowing = true;
-        eventList = new GameEvent[eventsObject.Length];
-        eventList[0] = new PotatoEvent("potato",eventsObject[0]);
+        Currency = 200; // Init the currency value.
     }
+    
 
-    private void Start()
-    {
-        
-        
-        //TODO : We'll add here the functionning events.
-        
-        eventInput.Enable();
-        eventInput.performed += ctx =>
-        {
-            print("The R key is pressed");
-            CurrentEvent = 0;
-        };
-    }
-
-    public event Action<int> OnGameEventTriggered;
-
-    private void GameEventTriggered(int e_index)
-    {
-        OnGameEventTriggered?.Invoke(e_index);
-    }
-
+   
     public event Action<int> OnCurrencyChange;
 
     private void CurrencyChange(int new_value)
