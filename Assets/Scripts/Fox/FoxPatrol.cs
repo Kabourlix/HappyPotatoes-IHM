@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 namespace Fox
@@ -24,8 +25,20 @@ namespace Fox
         [SerializeField] private float maxWaitingTimer = 4.0f; // In seconds
 
 
+        public Transform[] testPositionsEvent;
+        public InputAction test;
         private void Start()
         {
+            test.Enable();
+            test.performed += ctx =>
+            {
+                print("We added " + testPositionsEvent.Length + " target position to the Mesh agent.");
+                foreach (Transform t in testPositionsEvent)
+                {
+                    targetStack.Add(t);
+                }
+            };
+            
             targetStack = new List<Transform>();
             agent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
@@ -52,18 +65,30 @@ namespace Fox
                     animator.SetBool("isIdle", false); // Run animation
                     agent.SetDestination(currentTarget.position);
                 }
+                //print(Vector3.Distance(transform.position, currentTarget.position));
+                if (Vector3.Distance(transform.position, currentTarget.position) < 3f)
+                {
+                    print("We reached target");
+                    if (!hasBarked)
+                    {
+                        audioSource.Play(); // We play the bark sound.
+                        animator.SetBool("isIdle", true); // We put it on IDLE.
+                        hasBarked = true;
+                    }
 
-                if (!(Vector3.Distance(transform.position, currentTarget.position) < 0.2f)) return;
-                if (!hasBarked) audioSource.Play(); // We play the bark sound.
-                animator.SetBool("isIdle",true); // We put it on IDLE.
-                waitTimer -= Time.deltaTime; // We decrease wait timer.
-                if (!(waitTimer <= 0)) return;
-                if (targetStack.Count == 0) return; // We leave the loop to get back to the player following behavior.
-                currentTarget = targetStack[Random.Range(0, targetStack.Count)]; //Otherwise, we change target
-                waitTimer = maxWaitingTimer; // We re-init the timer.
-                animator.SetBool("isIdle", false); // Run animation
-                agent.SetDestination(currentTarget.position);
-
+                    
+                    waitTimer -= Time.deltaTime; // We decrease wait timer.
+                    print(waitTimer);
+                    if (waitTimer <= 0)
+                    {
+                        if (targetStack.Count == 0) return; // We leave the loop to get back to the player following behavior.
+                        currentTarget = targetStack[Random.Range(0, targetStack.Count)]; //Otherwise, we change target
+                        waitTimer = maxWaitingTimer; // We re-init the timer.
+                        animator.SetBool("isIdle", false); // Run animation
+                        agent.SetDestination(currentTarget.position);
+                        hasBarked = false;
+                    }
+                }
             }
             
         }
