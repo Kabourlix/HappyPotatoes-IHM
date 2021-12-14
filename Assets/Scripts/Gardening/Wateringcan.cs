@@ -34,6 +34,11 @@ public class Wateringcan : MonoBehaviour
                 {
                     hit.transform.GetComponent<Grow>().grow();
                 }
+
+                if (hit.transform.tag == "mud")
+                {
+                    hit.transform.GetComponent<Wet>().wet();
+                }
             }
         }
         
