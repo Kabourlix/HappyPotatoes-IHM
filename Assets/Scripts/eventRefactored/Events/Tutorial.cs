@@ -1,5 +1,6 @@
 using System;
 using System.Security.Cryptography;
+using Fox;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -14,6 +15,10 @@ namespace eventRefactored.Events
         [SerializeField] private AudioClip[] doggoClips;
         private AudioSource[] audioSources;
         private int currentClip;
+
+        [SerializeField] private Transform[] foxPos;
+
+        [SerializeField] private GameObject musiqueObject;
 
         private int currentQuest = 1;
         
@@ -68,14 +73,19 @@ namespace eventRefactored.Events
                 case 1 : //TP
                     if (tpArea.GetComponent<TpAreaScript>().isPlayerEntered)
                     {
+                        musiqueObject.SetActive(true);
                         currentQuest++;
                         tpArea.transform.position = tpArea2Potatoes.transform.position;
                         audioSources[currentClip].Play();
                         currentClip++;
+                        foreach (Transform t in foxPos)
+                        {
+                            fox.GetComponent<FoxPatrol>().AddTargetManually(t);
+                        }
                     }
                     break;
                 case 2 : // Go to potatoes
-                    audioSources[currentClip].PlayDelayed(7f);
+                    audioSources[currentClip].PlayDelayed(10f);
                     if (tpArea.GetComponent<TpAreaScript>().isPlayerEntered)
                     {
                         currentClip++;

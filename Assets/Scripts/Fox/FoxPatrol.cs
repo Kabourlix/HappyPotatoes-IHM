@@ -115,5 +115,10 @@ namespace Fox
         {
             targetStack.Add(e.transform);
         }
+
+        public void AddTargetManually(Transform e)
+        {
+            targetStack.Add(e);
+        }
     }
 }

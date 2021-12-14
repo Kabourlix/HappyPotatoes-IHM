@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/VRMaelys.unity
     guid: 096fa0be4114b4345b9ac558feb8e240
+  - enabled: 0
+    path: Assets/Scenes/film/scene.unity
+    guid: 3aa01979b211a2340a5a4a7903829f9c
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: af00b7279b24fc84e94d606f5e73948f,
       type: 2}
