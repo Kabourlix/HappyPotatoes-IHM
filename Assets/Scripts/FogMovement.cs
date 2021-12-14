@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Attached with camera offset and not to maincamera, so that the fog doesn't turn with the vision
+//Otherwise the fog is static
 public class FogMovement : MonoBehaviour
 {
-    // Important : attached with camera offset and not to maincamera!
+    
     [SerializeField] private Camera maincamera;
     
     // Start is called before the first frame update
@@ -16,6 +19,7 @@ public class FogMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // follow the main camera position but not its rotation
         transform.SetPositionAndRotation(maincamera.transform.position, new Quaternion(0,0,0,0));
     }
 }

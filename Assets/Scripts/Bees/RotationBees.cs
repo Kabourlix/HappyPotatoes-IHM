@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//To apply to the center of rotation of a group of bees
 public class RotationBees : MonoBehaviour
 {
     public float rotationspeed = 1.0f;

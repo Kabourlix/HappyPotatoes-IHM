@@ -10,7 +10,7 @@ public class Hornetscript : MonoBehaviour
     private float TargetDistance;
     private float Playerdistance;
 
-    // List of potential
+    // List of potential targets
     public int currenttarget;
     public Transform[] targets;
     public Transform Player;
@@ -47,9 +47,10 @@ public class Hornetscript : MonoBehaviour
         attackTime = Time.time;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
+        //update the target
         updatetarget();
        
         // calculate the distance between the target and the hornet
@@ -58,6 +59,7 @@ public class Hornetscript : MonoBehaviour
         // when the target is too far to be attacked
         if (TargetDistance > attackRange)
         {
+            // The hornet adapts its height before chasing
             float ydelta = targets[currenttarget].position.y - transform.position.y;
             if (Mathf.Abs(ydelta) < 0.02f)
             {
@@ -68,7 +70,6 @@ public class Hornetscript : MonoBehaviour
             {
                 agent.baseOffset += ydelta*0.05f ;                    
             }
-            //chase();
         }
 
         // when the target is near enough to be attacked
@@ -85,6 +86,7 @@ public class Hornetscript : MonoBehaviour
         agent.destination = targets[currenttarget].position;
     }
 
+    // The hornet attack the target
     void attack()
     {
         //Without cooldown
@@ -95,7 +97,7 @@ public class Hornetscript : MonoBehaviour
             attackTime = Time.time + attackRepeatTime;
         }
     }
-
+    // When the hornet takes dammage
     public void ApplyDammage(float TheDammage)
     {
         if (!isDead)
@@ -108,6 +110,8 @@ public class Hornetscript : MonoBehaviour
             }
         }
     }
+
+    // the hornet dies
     public void Dead()
     {
         //gameObject.GetComponent<CapsuleCollider>().enabled = false;
@@ -118,10 +122,10 @@ public class Hornetscript : MonoBehaviour
 
     public void updatetarget()
     {
-        // Calculate the distance between 
+        // Calculate the distance between the player and the hornet
         Playerdistance = Vector3.Distance(Player.position, transform.position);
         
-        // Verifying that there is still a bee which lives
+        // Verifying that there is still a bee alive
         bool existlivingbee = false;
         int i = 1;
         while (i < targets.Length)
@@ -133,11 +137,13 @@ public class Hornetscript : MonoBehaviour
             }
             i++;
         }
-
+        // The player is near enough to be attacked, he becomes the target or there is no living bee
         if (Playerdistance<=attackRange || (!existlivingbee))
         {
             currenttarget = 0;
         }
+
+        // There is an alive bee and the player is too far to be attacked
         else if (existlivingbee)
         {
             currenttarget=i;
