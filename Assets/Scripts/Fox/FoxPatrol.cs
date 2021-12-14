@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using eventRefactored;
+using eventRefactored.Events;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -23,6 +25,7 @@ namespace Fox
         private NavMeshAgent agent;
         private Animator animator;
         private AudioSource audioSource;
+        private EventsManager eventsManager;
         
         private float waitTimer; // This will give the time to wait between each move.
         [SerializeField] private float maxWaitingTimer = 4.0f; // In seconds
@@ -42,6 +45,7 @@ namespace Fox
                 }
             };
             
+            eventsManager = EventsManager.Instance;
             targetStack = new List<Transform>();
             agent = GetComponent<NavMeshAgent>();
             animator = GetComponent<Animator>();
@@ -51,6 +55,8 @@ namespace Fox
 
             hasReachedNewEvent = false;
             hasBarked = false;
+
+            eventsManager.OnGEventTriggered += AddTarget;
         }
 
         private void FixedUpdate()
@@ -102,6 +108,11 @@ namespace Fox
                 }
             }
             
+        }
+
+        private void AddTarget(GEvent e)
+        {
+            targetStack.Add(e.transform);
         }
     }
 }
