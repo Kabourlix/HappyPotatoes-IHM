@@ -8,7 +8,7 @@ namespace events
         
         public PollutionEvent(string _name, GameObject _relatedObject) : base(_name, _relatedObject)
         {
-
+          
         }
 
         public override void PlayEventSequence()

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class FogMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // Important : attached with camera offset and not to maincamera!
     [SerializeField] private Camera maincamera;
-
+    
+    // Start is called before the first frame update
     void Start()
     {
         
