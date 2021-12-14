@@ -22,10 +22,10 @@ namespace eventRefactored.Events
             }
         } //true if on going, false if to be ended.
         
-        private EventsManager manager;
+        protected EventsManager manager;
 
 
-        private void Awake()
+        protected void Awake()
         {
             manager = EventsManager.Instance;
             Status = true;

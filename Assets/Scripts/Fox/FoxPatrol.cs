@@ -61,6 +61,7 @@ namespace Fox
 
         private void FixedUpdate()
         {
+            if (!eventsManager.isFoxFollowing) return;
             if (targetStack.Count == 0) // No event in the stack.
             {
                 if (Vector3.Distance(player.transform.position, transform.position) < playerRange)

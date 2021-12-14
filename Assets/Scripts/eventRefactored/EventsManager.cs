@@ -13,6 +13,9 @@ namespace eventRefactored
         [SerializeField] private GameObject[] eventRelatedObject; // List the game objects that contains the GEvent
         private List<GEvent> eventStack;
 
+        public bool isTutorialOn;
+        public bool isFoxFollowing;
+
         private GEvent newEvent;
         private GEvent NewEvent
         {
@@ -71,6 +74,8 @@ namespace eventRefactored
             Instance = this;
             Timer = TimeLimit;
             settings = SettingsManagers.Instance;
+            isTutorialOn = true;
+            isFoxFollowing = false;
         }
 
         private int fact(int i)
@@ -96,6 +101,7 @@ namespace eventRefactored
         /// </summary>
         private void Update()
         {
+            if (isTutorialOn) return;
             // We randomly take an event or not.
             if (eventsTriggerThisMinute < eventRate) // We haven't enough event for this minute.
             {
