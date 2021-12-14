@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine;
 
+// Script to add to each Bee
 public class BeeBehavior : MonoBehaviour
 {
+    // List of the parents of bees
+    // parent 0 is its center of rotation in normalbehavior
+    // parent 1 is the fleeingcenter ( in center of the house)
     public Transform[] parents;
     private Transform currentparent;
+    
+    // Initial position around the hive
     private Transform inittransform;
-    public Transform firsttarget; // comment on le généralise
+
+    // if firsttarget is dead, it launch the fleeingbehavior
+    public Transform firsttarget; 
 
     //Speed of oscillation
     public float oscillationspeed = 1.0f;
@@ -19,7 +27,7 @@ public class BeeBehavior : MonoBehaviour
     // Agent of navigation
     private NavMeshAgent agent;
 
-    // boolean of normal behavior
+    // boolean of normal behavior : true if normal, false if fleeing 
     private bool normalbehavior;
 
     // Life of the Bee
@@ -38,6 +46,7 @@ public class BeeBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Fall of the Bee if dead
         if (isDead)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 0f, transform.position.z), 0.05f);
@@ -45,15 +54,15 @@ public class BeeBehavior : MonoBehaviour
         }
         else
         {
-            // Behavior during the hornetevent, after the death of the firstbee
-            if (firsttarget.GetComponent<BeeBehavior>().IsDead && false)
+            // Fleeingbehavior : during the hornetevent, after the death of the firstbee
+            if (firsttarget.GetComponent<BeeBehavior>().IsDead && false) // VERIFIER QUE L'EVENT EST TOUJOURS EN COURS
             {
                 transform.parent = parents[1];
                 animations.Play("Move");
                 normalbehavior = false;
             }
 
-            //Behavior just after the hornetevent 
+            //Transitionbehavior: just after the hornetevent, the bee returns to its initialposition
             else if (firsttarget.GetComponent<BeeBehavior>().IsDead && !normalbehavior)
             {
                 if (transform.position == inittransform.position)
@@ -73,7 +82,7 @@ public class BeeBehavior : MonoBehaviour
             }
         }
     }
-
+    // When the bee recieve dammage
     public void ApplyDammage(float TheDammage)
     {
         if (!isDead)
@@ -87,13 +96,16 @@ public class BeeBehavior : MonoBehaviour
         }
     }
 
+    //When the bee dies
     public void Dead()
     {
         transform.parent = parents[2];
         isDead = true;
         animations.Play("Death");
-        Destroy(transform.gameObject, 15);
+        Destroy(transform.gameObject, 10);
     }
+
+    
     public bool IsDead
     {
         get { return isDead; }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+// to add to the valve in Tube water tap
 public class HoneyValve : MonoBehaviour
 {
     //To interact with the valve

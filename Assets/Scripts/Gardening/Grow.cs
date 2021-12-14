@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// To add to a seed
 public class Grow : MonoBehaviour
 {
     //Seed statistics
     private float growthBar;
     private const float maxGrowth = 10f;
+
+    // The grown model
     public GameObject grownmodel;
 
     // Start is called before the first frame update
@@ -18,6 +21,7 @@ public class Grow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // The seed grown in scale with its growthbar
         float a = 1 + 2*growthBar/maxGrowth;
         transform.localScale = new Vector3(a, a, a);
     }
