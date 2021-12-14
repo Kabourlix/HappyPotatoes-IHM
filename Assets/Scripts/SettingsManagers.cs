@@ -39,15 +39,9 @@ public class SettingsManagers : MonoBehaviour
  
         Instance = this;
         IsFoxFollowing = true;
+        Currency = 200; // Init the currency value.
     }
-
-    private void Start()
-    {
-        
-        
-        //TODO : We'll add here the functionning events.
-        
-    }
+    
 
    
     public event Action<int> OnCurrencyChange;

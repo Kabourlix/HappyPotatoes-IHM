@@ -18,8 +18,14 @@ namespace Shop
         private List<GameObject> shopItemList;
         // end
         
+        // AUDIO
+
+        private AudioSource audioSource;
+        [SerializeField] private AudioClip[] audioClips;
         
-        
+        /////////
+
+        [SerializeField] private Transform spawner;
         
         private List<GameObject> children;
         private SettingsManagers manager;
@@ -29,8 +35,8 @@ namespace Shop
         private int currentCategory;
         private void Start()
         {
+            audioSource = GetComponent<AudioSource>();
             manager = SettingsManagers.Instance;
-            print(ShopModel.Instance);
             model = ShopModel.Instance;
             
             //Get the specific items
@@ -41,7 +47,6 @@ namespace Shop
             }
             
             children = new List<GameObject>();
-            Transform[] allChildren = GetComponentsInChildren<Transform>();
             foreach (Transform child in transform)
             {
                 if (child.CompareTag("shopMenu"))
@@ -103,6 +108,7 @@ namespace Shop
 
         public void GoToSellPage() // mode = 2
         {
+            //TODO : Do not perform the switch and add voice : "You really thought I would give u money ?" parce que pas développer.
             PerformSwitchMode(2);
         }
         
@@ -118,16 +124,25 @@ namespace Shop
             Item i = model.GetItemByPosition(currentCategory, position);
 
             //Adjust the player's currency
-            manager.Currency -= i.Price;
-            
-            //Deal with the bought item spawning.
-            print("Before entering");
-            SpawnItem(i);
+            if (manager.Currency > i.Price) // If the player can afford the buy.
+            {
+                manager.Currency -= i.Price;
+
+                //Deal with the bought item spawning.
+                print("Before entering");
+                SpawnItem(i);
+            }
+            else
+            {
+                //Add audio source
+                audioSource.clip = audioClips[0];
+                audioSource.Play();
+            }
         }
 
         private void SpawnItem(Item i)
         {
-            Instantiate(i.Prefab, Vector3.forward, Quaternion.identity);
+            Instantiate(i.Prefab, spawner.position + Vector3.up, Quaternion.identity, spawner);
         }
     }
     

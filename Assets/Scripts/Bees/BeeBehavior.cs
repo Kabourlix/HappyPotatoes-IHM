@@ -50,7 +50,7 @@ public class BeeBehavior : MonoBehaviour
         if (isDead)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(transform.position.x, 0f, transform.position.z), 0.05f);
-            GetComponent<TranslationBees>().enabled = false;
+            //!GetComponent<TranslationBees>().enabled = false;
         }
         else
         {
