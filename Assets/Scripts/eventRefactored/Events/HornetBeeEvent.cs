@@ -38,12 +38,14 @@ namespace eventRefactored.Events
         private void Start()
         {
             ID = 0;
+
+            //To test
             LaunchSequence();
         }
         // Update is called once per frame
         void Update()
         {
-            print(hornet1.GetComponent<Hornetscript>().isDead);
+            
             hornetsalive = (!hornet1.GetComponent<Hornetscript>().isDead && !hornet2.GetComponent<Hornetscript>().isDead);
             if (!hornetsalive)
             {

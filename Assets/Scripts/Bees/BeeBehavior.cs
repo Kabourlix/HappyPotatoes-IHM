@@ -9,6 +9,7 @@ public class BeeBehavior : MonoBehaviour
     // List of the parents of bees
     // parent 0 is its center of rotation in normalbehavior
     // parent 1 is the fleeingcenter ( in center of the house)
+    // parent 2 is the ground
     public Transform[] parents;
     private Transform currentparent;
 
@@ -43,6 +44,7 @@ public class BeeBehavior : MonoBehaviour
         currentparent = parents[0];
         inittransform = transform;
         normalbehavior = true;
+        BeeHealth = 10f;
     }
 
     // Update is called once per frame

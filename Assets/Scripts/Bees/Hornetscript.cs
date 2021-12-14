@@ -18,10 +18,10 @@ public class Hornetscript : MonoBehaviour
     public AudioSource hit;
 
     // Range of the attacks
-    public float attackRange = 4f;
+    public float attackRange ;
 
     // Cooldown of attacks
-    public float attackRepeatTime = 1;
+    public float attackRepeatTime = 1f;
     private float attackTime;
 
     // Amount of the inflicted dammage
@@ -45,6 +45,8 @@ public class Hornetscript : MonoBehaviour
         animations = gameObject.GetComponent<Animator>();
         attackTime = Time.time;
         isDead = false;
+        attackRange = 2f;
+        TheDammage = 1.5f;
     }
 
     
@@ -55,6 +57,10 @@ public class Hornetscript : MonoBehaviour
        
         // calculate the distance between the target and the hornet
         TargetDistance = Vector3.Distance(targets[currenttarget].position, transform.position);
+        
+        print(TargetDistance > attackRange);
+        
+        print(attackRange);
 
         // when the target is too far to be attacked
         if (TargetDistance > attackRange)
@@ -73,7 +79,7 @@ public class Hornetscript : MonoBehaviour
         }
 
         // when the target is near enough to be attacked
-        if (TargetDistance < attackRange)
+        if (TargetDistance <= attackRange)
         {
             attack();
         }
@@ -152,7 +158,6 @@ public class Hornetscript : MonoBehaviour
         {
             currenttarget=i;
         }
-        
     }
 
     public void OnTriggerEnter(Collider other)
