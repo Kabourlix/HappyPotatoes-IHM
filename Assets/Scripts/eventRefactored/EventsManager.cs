@@ -105,10 +105,11 @@ namespace eventRefactored
                     eventTriggeredSinceBeggining += 1;
                     int id = Random.Range(0, amountOfDifferentEvents);
                     NewEvent = eventRelatedObject[id].GetComponent<GEvent>(); // We changed the new event (it is added to the stack)
+                    NewEvent.LaunchSequence();
                 }
             }
             //If we add one, we launch sequence
-            NewEvent.LaunchSequence();
+           
         
         }
 
