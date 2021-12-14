@@ -117,10 +117,11 @@ public class HornetAttack : MonoBehaviour
     {
 
         Debug.Log("in dead");
-        gameObject.GetComponent<CapsuleCollider>().enabled = false;
+        //gameObject.GetComponent<CapsuleCollider>().enabled = false;
         isDead = true;
+        Debug.Log(isDead.ToString());
         animations.Play("Death");
-        Destroy(transform.gameObject, 5);
+        Destroy(gameObject);
     }
 
     public void updatetarget()
