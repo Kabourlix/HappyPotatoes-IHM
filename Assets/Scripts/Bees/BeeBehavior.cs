@@ -11,6 +11,8 @@ public class BeeBehavior : MonoBehaviour
     // parent 1 is the fleeingcenter ( in center of the house)
     public Transform[] parents;
     private Transform currentparent;
+
+    public Transform departhornet;
     
     // Initial position around the hive
     private Transform inittransform;
@@ -55,7 +57,7 @@ public class BeeBehavior : MonoBehaviour
         else
         {
             // Fleeingbehavior : during the hornetevent, after the death of the firstbee
-            if (firsttarget.GetComponent<BeeBehavior>().IsDead && false) // VERIFIER QUE L'EVENT EST TOUJOURS EN COURS
+            if (firsttarget.GetComponent<BeeBehavior>().IsDead && !departhornet.GetComponent<eventRefactored.Events.HornetBeeEvent>().hornetsalive)
             {
                 transform.parent = parents[1];
                 animations.Play("Move");

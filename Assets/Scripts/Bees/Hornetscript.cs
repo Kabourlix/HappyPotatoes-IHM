@@ -10,16 +10,15 @@ public class Hornetscript : MonoBehaviour
     private float TargetDistance;
     private float Playerdistance;
 
-    // List of potential targets
+    // List of potential targets, the first one has to be the player
     public int currenttarget;
     public Transform[] targets;
-    public Transform Player;
 
-    //Distance of pursuit
-    public float chaseRange = 10;
+    // Sound when the shovel hits the hornet
+    public AudioSource hit;
 
     // Range of the attacks
-    public float attackRange = 2.2f;
+    public float attackRange = 4f;
 
     // Cooldown of attacks
     public float attackRepeatTime = 1;
@@ -36,15 +35,16 @@ public class Hornetscript : MonoBehaviour
 
     // Life of the enemy
     public float enemyHealth;
-    private bool isDead = false;
+    public bool isDead ;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = gameObject.GetComponent<NavMeshAgent>();
-        //agent.baseOffset= 1f ;
+        //currenttarget = 0;
         animations = gameObject.GetComponent<Animator>();
         attackTime = Time.time;
+        isDead = false;
     }
 
     
@@ -93,7 +93,11 @@ public class Hornetscript : MonoBehaviour
         if (Time.time > attackTime)
         {
             animations.Play("Attack");
-            targets[currenttarget].GetComponent<BeeBehavior>().ApplyDammage(TheDammage);
+            if (targets[currenttarget].tag == "Bee")
+            {
+                targets[currenttarget].GetComponent<BeeBehavior>().ApplyDammage(TheDammage);
+            }
+            
             attackTime = Time.time + attackRepeatTime;
         }
     }
@@ -123,7 +127,7 @@ public class Hornetscript : MonoBehaviour
     public void updatetarget()
     {
         // Calculate the distance between the player and the hornet
-        Playerdistance = Vector3.Distance(Player.position, transform.position);
+        Playerdistance = Vector3.Distance(targets[0].position, transform.position);
         
         // Verifying that there is still a bee alive
         bool existlivingbee = false;
@@ -149,5 +153,21 @@ public class Hornetscript : MonoBehaviour
             currenttarget=i;
         }
         
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+
+        Debug.Log("Collision detected");
+        Debug.Log(enemyHealth.ToString());
+
+        hit.Play();
+
+        if (other.tag == "Shovel")
+        {
+
+            Debug.Log("Collision with shovel");
+            ApplyDammage(TheDammage);
+        }
     }
 }
