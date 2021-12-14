@@ -21,10 +21,11 @@ namespace eventRefactored
             {
                 eventStack.Add(value);
                 newEvent = value;
+                GEventTriggered(value);
             }
         }
 
-        private int amountOfDifferentEvents; // Tutorial is not taken into account.
+        [SerializeField] private int amountOfDifferentEvents; // Tutorial is not taken into account.
         
         private int eventsTriggerThisMinute;
 
@@ -119,6 +120,15 @@ namespace eventRefactored
                 break;
             }
         }
+
+        public event Action<GEvent> OnGEventTriggered;
+
+        private void GEventTriggered(GEvent e)
+        {
+            OnGEventTriggered?.Invoke(e);
+        }
         
+        //TODO : Deal with deleting event to the fox too.
+
     }
 }

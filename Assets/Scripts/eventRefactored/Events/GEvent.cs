@@ -12,9 +12,8 @@ namespace eventRefactored.Events
         // Attributes
         public int ID { get; private set;}
 
-        private bool Status
+        protected bool Status
         {
-            get => Status;
             set
             {
                 if (value) return;
@@ -29,6 +28,7 @@ namespace eventRefactored.Events
         private void Awake()
         {
             manager = EventsManager.Instance;
+            Status = true;
         }
         
         /// <summary>
