@@ -188,6 +188,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   maxWaitingTimer: 4
+  testPositionsEvent: []
+  test:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 624375d9-5f8e-438e-a0aa-95c48f02905e
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
 --- !u!1 &994633258559011531
 GameObject:
   m_ObjectHideFlags: 0
