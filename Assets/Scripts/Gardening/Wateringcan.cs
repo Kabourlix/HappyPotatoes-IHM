@@ -19,9 +19,10 @@ public class Wateringcan : MonoBehaviour
     {
         if (true)
         {
-            Ray ray = new Ray(transform.position, Vector3.forward*10);
+            Ray ray = new Ray(transform.position,transform.forward*10);
+            
             RaycastHit hit;
-            Debug.DrawRay(transform.position, Vector3.forward,Color.blue);
+            Debug.DrawRay(transform.position, transform.forward,Color.blue);
 
             if (Physics.Raycast(ray, out hit, 2f))
             {
