@@ -91,10 +91,6 @@ namespace eventRefactored.Events
                     break;
             }
         }
-
-        private void SecondQuest()
-        {
-            
-        }
+        
     }
 }
