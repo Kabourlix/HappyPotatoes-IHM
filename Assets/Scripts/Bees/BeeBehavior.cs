@@ -9,8 +9,11 @@ public class BeeBehavior : MonoBehaviour
     // List of the parents of bees
     // parent 0 is its center of rotation in normalbehavior
     // parent 1 is the fleeingcenter ( in center of the house)
+    // parent 2 is the ground
     public Transform[] parents;
     private Transform currentparent;
+
+    public Transform departhornet;
     
     // Initial position around the hive
     private Transform inittransform;
@@ -41,6 +44,7 @@ public class BeeBehavior : MonoBehaviour
         currentparent = parents[0];
         inittransform = transform;
         normalbehavior = true;
+        BeeHealth = 10f;
     }
 
     // Update is called once per frame
@@ -55,7 +59,7 @@ public class BeeBehavior : MonoBehaviour
         else
         {
             // Fleeingbehavior : during the hornetevent, after the death of the firstbee
-            if (firsttarget.GetComponent<BeeBehavior>().IsDead && false) // VERIFIER QUE L'EVENT EST TOUJOURS EN COURS
+            if (firsttarget.GetComponent<BeeBehavior>().IsDead && !departhornet.GetComponent<eventRefactored.Events.HornetBeeEvent>().hornetsalive)
             {
                 transform.parent = parents[1];
                 animations.Play("Move");

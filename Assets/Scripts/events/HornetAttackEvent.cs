@@ -8,7 +8,10 @@ namespace events
 {
     public class HornetAttackEvent : GameEvent
     {
+        public Transform[] Hornets;
+        public GameObject original;
         public static HornetAttackEvent current;
+         
         private void Awake()
         {
             current = this;
@@ -20,9 +23,10 @@ namespace events
         public override void PlayEventSequence()
         {
             //Init script that make hornet spawn
-            
+            //GameObject hornet = Instantiate(original);
+
             //Make hornet in attack mode
-            
+
         }
 
         public event Action onSadBees;

@@ -10,7 +10,7 @@ namespace eventRefactored.Events
     public abstract class GEvent : MonoBehaviour
     {
         // Attributes
-        public int ID { get; private set;}
+        public int ID { get; set;}
 
         protected bool Status
         {
