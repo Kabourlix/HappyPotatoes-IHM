@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,8 +13,13 @@ namespace eventRefactored.Events
         [SerializeField] private GameObject fox;
         [SerializeField] private AudioClip[] doggoClips;
         private AudioSource[] audioSources;
-        private AudioSource audioSource;
         private int currentClip;
+
+        private int currentQuest = 1;
+        
+        //TP 
+        [SerializeField] private GameObject tpArea;
+        [SerializeField] private GameObject tpArea2Potatoes;
         public override void LaunchSequence()
         {
             //First sound of the intro.
@@ -22,11 +28,17 @@ namespace eventRefactored.Events
             //Fox appearance
             audioSources[currentClip].PlayDelayed(13f);
             manager.isFoxFollowing = true;
+            currentClip++;
             
             fox.GetComponent<AudioSource>().clip = doggoClips[0];
             fox.GetComponent<AudioSource>().volume = 0.3f;
             fox.GetComponent<AudioSource>().PlayDelayed(19);
-            print(currentClip);
+            
+            //Teleport show
+            audioSources[currentClip].PlayDelayed(29.5f);
+            currentClip++;
+            audioSources[currentClip].PlayDelayed(42f);
+            currentClip++;
         }
 
         protected override void EndSequence()
@@ -42,6 +54,7 @@ namespace eventRefactored.Events
             foreach (Transform t in playerAudioSourceGameObject.transform)
             {
                 audioSources[k] = t.GetComponent<AudioSource>();
+                k++;
             }
             manager = EventsManager.Instance;
             
@@ -50,8 +63,33 @@ namespace eventRefactored.Events
 
         private void Update()
         {
-            //if first quest accomplished
-            SecondQuest();
+            switch (currentQuest)
+            {
+                case 1 : //TP
+                    if (tpArea.GetComponent<TpAreaScript>().isPlayerEntered)
+                    {
+                        currentQuest++;
+                        tpArea.transform.position = tpArea2Potatoes.transform.position;
+                        audioSources[currentClip].Play();
+                        currentClip++;
+                    }
+                    break;
+                case 2 : // Go to potatoes
+                    audioSources[currentClip].PlayDelayed(7f);
+                    if (tpArea.GetComponent<TpAreaScript>().isPlayerEntered)
+                    {
+                        currentClip++;
+                        currentQuest++;
+                        tpArea.SetActive(false);
+                        audioSources[currentClip].Play();
+                        currentClip++;
+                    }
+                    break;
+                
+                case 3 : // The shop
+
+                    break;
+            }
         }
 
         private void SecondQuest()
