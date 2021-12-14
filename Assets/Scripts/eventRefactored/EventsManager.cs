@@ -10,7 +10,7 @@ namespace eventRefactored
     public class EventsManager : MonoBehaviour
     {
         private List<GEvent> eventStack;
-        
+
         private GEvent NewEvent
         {
             get => NewEvent;
