@@ -7,4 +7,6 @@ This has been made in collaboration with :
 - Margot Farkas 
 - Maëlle Gabens
 
+## Demo video
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/wvlRDzzCuHM/0.jpg)](https://www.youtube.com/watch?v=wvlRDzzCuHM)
